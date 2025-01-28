@@ -86,15 +86,14 @@ BECOM_Code readMessage(std::stringstream &stream)
 #define WHERE "sendMessage()"
 void sendMessage(const std::string response)
 {
-    std::string response2 = response.substr(0, response.length() - 1);
-    size_t length = response2.length();
+    size_t length = response.length();
     // include nullterminator here
     uint32_t len = (uint32_t)length /*+ 1*/;
 
     fwrite(&len, 1, 4, stdout);
 
-    log_info("%s: Response (%i): '%s'", WHERE, len, response2.c_str());
+    log_info("%s: Response (%i): '%s'", WHERE, len, response.c_str());
 
-    cout << response2 << std::flush;
+    cout << response << std::flush;
 }
 #undef WHERE
